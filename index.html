@@ -2410,7 +2410,8 @@ document.getElementById('setting-chat-bg-upload').addEventListener('change', asy
         worldBookSelectionModal.addEventListener('click', e => {
             if(e.target === worldBookSelectionModal) worldBookSelectionModal.classList.remove('visible');
         });
-        saveWorldBookSelectionBtn.addEventListener('click', () => {
+saveWorldBookSelectionBtn.addEventListener('click', (e) => { // 1. 接收事件对象 e
+    e.stopPropagation(); // 2. 阻止事件冒泡
             const character = db.characters.find(c => c.id === currentChatId);
             if (!character) return;
             const selectedIds = Array.from(worldBookSelectionList.querySelectorAll('input:checked')).map(input => input.value);
